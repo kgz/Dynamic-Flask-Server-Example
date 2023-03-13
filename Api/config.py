@@ -25,11 +25,10 @@ def set(app: 'App') -> Union[Response, Tuple[Response, int]]:
 	@method POST
 	"""
 	# get config from request
-	temp_config = request.json
-	if not temp_config:
+	if not request.json:
 		return jsonify({"error": "No config provided"}), 400
 	# set config
-	app.config = temp_config
+	app.config = request.json
 	return jsonify(app.config)
 
 # used to mimic the above function, but with a post request

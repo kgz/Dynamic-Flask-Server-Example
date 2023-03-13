@@ -13,12 +13,12 @@ ogpath = os.getcwd()
 path = pathlib.Path(__file__).parent.resolve()
 os.chdir(path)
 
-onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
-onlyfiles = [f for f in onlyfiles if not f.startswith("__")]
+files = [f for f in listdir(path) if isfile(join(path, f))]
+files = [f for f in files if not f.startswith("__")]
 
 from .wrapper import api_list
 
-for x in onlyfiles:
+for x in files:
     import_module("Api." + x[:-3])
 
 os.chdir(ogpath)
